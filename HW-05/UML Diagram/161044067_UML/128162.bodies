@@ -1,0 +1,34 @@
+class Shapes
+!!!139682.cpp!!!	Shapes()
+/* Default Constructor */
+!!!140706.cpp!!!	operator ==(in shape1 : Shapes, in shape2 : Shapes) : bool
+		return (shape1.area() == shape2.area());
+!!!140834.cpp!!!	operator !=(in shape1 : Shapes, in shape2 : Shapes) : bool
+		return !(shape1 == shape2);
+!!!141218.cpp!!!	set_x(in x_value : double) : void
+ 
+		
+		try{
+			if(x_value < 0)
+				throw Control_Exception();
+			else
+				loc_x = x_value;
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate_X() << endl;
+			loc_x = 0;
+		} 
+!!!141346.cpp!!!	set_y(in y_value : double) : void
+ 
+		try{
+			if(y_value < 0)
+				throw Control_Exception();
+			else
+				loc_y = y_value;
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate_Y() << endl;
+			loc_y = 0;
+		} 
+!!!141602.cpp!!!	~Shapes()
+/* Body Initialize Empty */

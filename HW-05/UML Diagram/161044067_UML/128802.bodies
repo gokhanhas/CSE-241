@@ -1,0 +1,40 @@
+class Point2D
+!!!132514.cpp!!!	Point2D()
+ /* Body Initialize Empty */
+!!!132642.cpp!!!	Point2D(in x : double, in y : double)
+
+		try{
+			if(x < 0 || y < 0)
+				throw Control_Exception();
+			else{
+				coordinate_X = x;
+				coordinate_Y = y;
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			coordinate_X = 0;
+			coordinate_Y = 0; 
+		} 
+!!!132770.cpp!!!	setCoordinate_X(in x : int) : void
+		try{
+			if(x < 0)
+				throw Control_Exception();
+			else
+				coordinate_X = x;
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate_X() << endl;
+			coordinate_X = 0;
+		} 
+!!!132898.cpp!!!	setCoordinate_Y(in y : int) : void
+		try{
+			if(y < 0)
+				throw Control_Exception();
+			else
+				coordinate_Y = y;
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate_Y() << endl;
+			coordinate_Y = 0;
+		} 

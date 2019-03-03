@@ -1,0 +1,175 @@
+class Rectangle
+!!!136610.cpp!!!	Rectangle()
+ 
+		shapeType = 'r'; 
+		loc_x = 0; 
+		loc_y = 0;  
+!!!136738.cpp!!!	Rectangle(in w : int, in h : int)
+ 
+		shapeType = 'r'; 
+		
+		try{
+			if(w < 0 || h < 0){
+				throw Control_Exception();
+			}
+			loc_x = 0;
+			loc_y = 0;
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			width = 0;
+			height = 0;
+		}
+!!!136866.cpp!!!	Rectangle(in x : double, in y : double)
+ 
+		shapeType = 'r'; 
+		
+		try{
+			if(x < 0 || y < 0){
+				throw Control_Exception();
+			}
+			else{
+				loc_x = x; 
+				loc_y = y; 
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0;
+		} 
+!!!136994.cpp!!!	Rectangle(in w : int, in h : int, in x : double, in y : double)
+ 
+		shapeType = 'r'; 
+		
+		try{
+			if(x < 0 || y < 0 || w < 0 || h < 0){
+				throw Control_Exception();
+			}
+			else{
+				loc_x = x; 
+				loc_y = y; 
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			loc_x = 0;
+			loc_y = 0;
+			height = 0;
+			width = 0;
+		} 
+!!!137122.cpp!!!	Rectangle(in w : int, in h : int, in x : double, in y : double, in color : int)
+ 
+		shapeType = 'r'; 
+		
+		try{
+			if(x < 0 || y < 0 || w < 0 || h < 0){
+				throw Control_Exception();
+			}
+			else{
+				loc_x = x; 
+				loc_y = y; 
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			loc_x = 0;
+			loc_y = 0;
+			height = 0;
+			width = 0;
+		} 
+!!!137250.cpp!!!	setWidth(in w : int) : void
+ 
+		try{
+			if(w < 0){
+				throw Control_Exception();
+			}
+			else
+				width = w;
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			width = 0;
+			height = 0;
+		}
+!!!137378.cpp!!!	setHeight(in h : int) : void
+		height = h; 
+!!!138274.cpp!!!	operator ++() : Rectangle
+ // prefix version
+
+		loc_x++;
+		loc_y++;
+
+		return *this;
+!!!138402.cpp!!!	operator ++(in ignoreMe : int) : Rectangle
+ // postfix version
+
+		double tempX = loc_x;
+		double tempY = loc_y;
+		loc_x++;
+		loc_y++;
+
+		Rectangle temp(width,height,tempX,tempY,this->getControlRectangleColor());
+		Rectangle *returnTemp = &temp;
+		return *returnTemp;
+!!!138530.cpp!!!	operator --() : Rectangle
+ // prefix version
+
+		loc_x--;
+		loc_y--;
+
+		try{
+			if(loc_x < 0 || loc_y < 0)
+				throw Control_Exception();
+	
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0; 
+		} 
+		
+		return *this;
+!!!138658.cpp!!!	operator --(in ignoreMe : int) : Rectangle
+ // postfix version
+
+		double tempX = loc_x;
+		double tempY = loc_y;
+		loc_x--;
+		loc_y--;
+		
+		try{
+			if(loc_x < 0 || loc_y < 0)
+				throw Control_Exception();
+	
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0; 
+		} 
+		
+		Rectangle temp(width,height,tempX,tempY,this->getControlRectangleColor());
+		Rectangle *returnTemp = &temp;
+		return *returnTemp;
+!!!138786.cpp!!!	operator <<(inout outs : ostream, in rectangle : Rectangle) : ostream
+
+		if(rectangle.getControlRectangleColor() == 0){ // Drawing big rectangle
+			outs << "\n\t<rect x=\"" << rectangle.get_x() << "\" y=\"" << rectangle.get_y()  << "\" width=\""
+				 << rectangle.getWidth() << "\" height=\"" << rectangle.getHeight() 
+				 << "\" style=\"fill:red\" />" << endl;
+		}
+			
+		else if(rectangle.getControlRectangleColor() == 1){ // Drawing small rectangle
+			outs << "\n\t<rect x=\"" << rectangle.get_x() << "\" y=\"" << rectangle.get_y()  << "\" width=\""
+				 << rectangle.getWidth() << "\" height=\"" << rectangle.getHeight() 
+				 << "\" style=\"fill:green;stroke-width:1\" />" << endl;
+		}
+
+		else if(rectangle.getControlRectangleColor() == 2){ // Drawing small rectangle
+			outs << "\n\t<rect x=\"" << rectangle.get_x() << "\" y=\"" << rectangle.get_y()  << "\" width=\""
+				 << rectangle.getWidth() << "\" height=\"" << rectangle.getHeight() 
+				 << "\" style=\"fill:pink;stroke-width:1\" />" << endl;
+		}
+
+		return outs;

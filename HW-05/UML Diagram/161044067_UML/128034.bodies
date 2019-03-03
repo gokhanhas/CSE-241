@@ -1,0 +1,170 @@
+class Circle
+!!!128034.cpp!!!	Circle()
+ 
+		shapeType = 'c';
+		loc_x = 0;
+		loc_y = 0; 
+!!!128162.cpp!!!	Circle(in r : double)
+ 
+		shapeType = 'c'; 
+		
+		try{
+			if(r < 0){
+				throw Control_Exception();
+			}
+			else{
+				loc_x = radius; 
+				loc_y = radius; 
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			loc_x = 0;
+			loc_y = 0;
+		} 
+!!!128290.cpp!!!	Circle(in x : double, in y : double)
+ 
+		shapeType = 'c';
+		
+		try{
+			if(x < 0 || y < 0)
+				throw Control_Exception();
+			else{
+				loc_x = x;
+				loc_y = y; 
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0; 
+		} 
+!!!128418.cpp!!!	Circle(in r : double, in x : double, in y : double)
+ 
+		shapeType = 'c'; 
+		
+		try{
+			if(r < 0 || x < 0 || y < 0)
+				throw Control_Exception();
+			else{
+				loc_x = x;
+				loc_y = y;
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			loc_x = 0;
+			loc_y = 0;
+			radius = 0; 
+		} 
+!!!128546.cpp!!!	Circle(in r : double, in x : double, in y : double, in color : int)
+ 
+		shapeType = 'c'; 
+		
+		try{
+			if(r < 0 || x < 0 || y < 0)
+				throw Control_Exception();
+			else{
+				loc_x = x;
+				loc_y = y;
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			loc_x = 0;
+			loc_y = 0;
+			radius = 0; 
+		} 
+!!!128674.cpp!!!	setRadius(in r : double) : void
+ 
+		try{
+			if(r < 0){
+				throw Control_Exception();
+			}
+			else{
+				radius = r;
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			radius = 0;
+		} 
+!!!129442.cpp!!!	operator ++() : Circle
+ // prefix vesion
+
+		loc_x++;
+		loc_y++;
+		
+		return *this;
+!!!129570.cpp!!!	operator ++(in ignoreMe : int) : Circle
+ // postfix version
+
+		double tempX = loc_x;
+		double tempY = loc_y;
+		loc_x++;
+		loc_y++;
+
+		Circle temp(radius,tempX,tempY,this->getControlCircleColor());
+		Circle *returnTemp = &temp;
+		return *returnTemp;
+!!!129698.cpp!!!	operator --() : Circle
+ // prefix vesion
+
+		loc_x--;
+		loc_y--;
+
+		try{
+			if(loc_x < 0 || loc_y < 0)
+				throw Control_Exception();
+	
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0; 
+		} 
+
+		
+		return *this;
+!!!129826.cpp!!!	operator --(in ignoreMe : int) : Circle
+ // postfix version
+
+		double tempX = loc_x;
+		double tempY = loc_y;
+		loc_x--;
+		loc_y--;
+
+		try{
+			if(loc_x < 0 || loc_y < 0)
+				throw Control_Exception();
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0; 
+		} 
+
+		Circle temp(radius,tempX,tempY,this->getControlCircleColor());
+		Circle *returnTemp = &temp;
+		return *returnTemp;
+!!!129954.cpp!!!	operator <<(inout outs : ostream, in circle : Circle) : ostream
+
+		if(circle.getControlCircleColor() == 0){ // Drawing big circle
+			outs << "\n\t<circle cx=\"" << circle.get_x() << "\" cy=\"" << circle.get_y()
+			 	 << "\" r=\"" << circle.getRadius() << "\" fill=\"red\" />";
+		}
+		else if(circle.getControlCircleColor() == 1){ 
+			outs << "\n\t<circle cx=\"" << circle.get_x() << "\" cy=\"" << circle.get_y()
+			 	 << "\" r=\"" << circle.getRadius() << "\" fill=\"green\" />";
+		}
+
+		else if(circle.getControlCircleColor() == 2){
+			outs << "\n\t<circle cx=\"" << circle.get_x() << "\" cy=\"" << circle.get_y()
+			 	 << "\" r=\"" << circle.getRadius() << "\" fill=\"black\" />";
+		}
+		else{ // Drawing small circle
+			outs << "\n\t<circle cx=\"" << circle.get_x() << "\" cy=\"" << circle.get_y()
+			 	 << "\" r=\"" << circle.getRadius() << "\" fill=\"yellow\" />";
+		}
+		
+		return outs;

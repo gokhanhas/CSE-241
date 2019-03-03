@@ -1,0 +1,160 @@
+class Triangle
+!!!141730.cpp!!!	Triangle()
+ 
+		shapeType = 't'; 
+		loc_x = 0.0; 
+		loc_y = 0.0; 
+!!!141858.cpp!!!	Triangle(in e : double)
+ 
+		shapeType = 't'; 
+		try{
+			if(e < 0){
+				throw Control_Exception();
+			}
+			else{
+				loc_x = edge/2.0; 
+				loc_y = 0; 
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			loc_x = 0; // this is the top of the coordinates Triangle
+			loc_y = 0;
+		}
+!!!141986.cpp!!!	Triangle(in x : double, in y : double)
+ 
+		shapeType = 't'; 
+		
+		try{
+			if(x < 0 || y < 0)
+				throw Control_Exception();
+			else{
+				loc_x = x;
+				loc_y = y; 
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0; 
+		} 
+!!!142114.cpp!!!	Triangle(in e : double, in x : double, in y : double)
+ 
+		shapeType = 't'; 
+		try{
+			if(e < 0 || x < 0 || y < 0)
+				throw Control_Exception();
+			else{
+				loc_x = x;
+				loc_y = y;
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			loc_x = 0;
+			loc_y = 0;
+			edge = 0; 
+		} 
+!!!142242.cpp!!!	Triangle(in e : double, in x : double, in y : double, in color : int, in rotate : int)
+ 
+		shapeType = 't'; 
+		try{
+			if(e < 0 || x < 0 || y < 0)
+				throw Control_Exception();
+			else{
+				loc_x = x;
+				loc_y = y;
+			}
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.error() << endl;
+			loc_x = 0;
+			loc_y = 0;
+			edge = 0; 
+		}
+!!!142370.cpp!!!	setEdge(in e : double) : void
+ 
+		edge = e; 
+!!!143394.cpp!!!	operator ++() : Triangle
+ // prefix version
+		
+		loc_x++;
+		loc_y++;
+
+		return *this;
+!!!143522.cpp!!!	operator ++(in ignoreMe : int) : Triangle
+ // postfix version
+
+		double tempX = loc_x;
+		double tempY = loc_y;
+		loc_x++;
+		loc_y++;
+
+		Triangle temp(edge,tempX,tempY,this->getControlTriangleColor(),this->getRotateControl());
+		Triangle *returnTemp = &temp;
+		return *returnTemp;
+!!!143650.cpp!!!	operator --() : Triangle
+ // prefix version
+		
+		loc_x--;
+		loc_y--;
+		
+		try{
+			if(loc_x < 0 || loc_y < 0)
+				throw Control_Exception();
+	
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0; 
+		} 
+		
+		return *this;
+!!!143778.cpp!!!	operator --(in ignoreMe : int) : Triangle
+ // postfix version
+
+		double tempX = loc_x;
+		double tempY = loc_y;
+		loc_x--;
+		loc_y--;
+
+		try{
+			if(loc_x < 0 || loc_y < 0)
+				throw Control_Exception();
+	
+		}
+		catch(Control_Exception& errorMessage){
+			cout << errorMessage.errorCoordinate() << endl;
+			loc_x = 0;
+			loc_y = 0; 
+		} 
+
+		Triangle temp(edge,tempX,tempY,this->getControlTriangleColor(),this->getRotateControl());
+		Triangle *returnTemp = &temp;
+		return *returnTemp;
+!!!143906.cpp!!!	operator <<(inout outs : ostream, in triangle : Triangle) : ostream
+
+		double tx2,tx3,ty2,ty3;
+
+		if(triangle.getRotateControl() == 0){ // Coordinates for drawing normal triangles
+			tx2 = triangle.get_x() - triangle.getEdge()/2; 		ty2 = triangle.get_y() + triangle.getEdge()/2*sqrt(3);
+			tx3 = triangle.get_x() + triangle.getEdge()/2;		ty3 = triangle.get_y()+ triangle.getEdge()/2*sqrt(3);
+		}
+
+		else{ // Coordinates for drawing inverse triangles
+			tx2 = triangle.get_x() + triangle.getEdge(); 			ty2 = triangle.get_y();
+			tx3 = triangle.get_x() + triangle.getEdge()/2;			ty3 = triangle.get_y() + triangle.getEdge()/2*sqrt(3);
+		}
+
+		if(triangle.controlTriangleColor == 0){ // Drawing big triangle
+			outs << "\n\t<polygon points=\"" << triangle.get_x() << "," << triangle.get_y() << " " << tx2 
+				 << "," << ty2 << " " << tx3 << "," << ty3 
+				 << "\" style=\"fill:red\" />" << endl;
+		}
+		else{ // Drawing small triangle
+			outs << "\n\t<polygon points=\"" << triangle.get_x() << "," << triangle.get_y() << " " << tx2 
+				 << "," << ty2 << " " << tx3 << "," << ty3 
+				 << "\" style=\"fill:green;stroke-width:0.5\" />" << endl;
+		}
+		return outs;

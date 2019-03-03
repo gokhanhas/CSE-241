@@ -1,0 +1,13 @@
+window_sizes 1800 910 450 1345 760 104
+
+diagrams
+  active  classdiagram_ref 128034 // 161044067_UML_Diagram
+    1076 721 100 A4 276 0
+end
+show_stereotypes
+selected 
+  package_ref 129 // 161044067_UML
+open
+  classview_ref 128034 // HW5_yeni
+end
+end
