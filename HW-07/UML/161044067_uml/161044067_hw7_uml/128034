@@ -1,0 +1,35 @@
+format 221
+"161044067_CSE241_HW7_project" // 161044067_CSE241_HW7_project
+  revision 1
+  modified_by 34 "Gökhan"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\Gökhan\\Desktop\\161044067_CSE241_HW7_project/"
+  package_ref 128162 // src
+end

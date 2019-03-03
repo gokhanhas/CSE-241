@@ -1,0 +1,7 @@
+class Polygon
+!!!135074.java!!!	Polygon()
+		/* Body Initialize Empty */
+!!!135202.java!!!	area() : double
+		return areaPolygon;
+!!!135330.java!!!	perimeter() : double
+		return perimeterPolygon;

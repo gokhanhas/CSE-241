@@ -1,0 +1,83 @@
+class Rectangle
+!!!138786.java!!!	Rectangle()
+		width = 0.0;
+		height = 0.0;
+		pos_x = 0;
+		pos_y = 0;
+!!!138914.java!!!	Rectangle(in w : double, in h : double)
+		width = w;
+		height = h;
+		pos_x = 0;
+		pos_y = 0;
+!!!139042.java!!!	Rectangle(in w : double, in h : double, in x : double, in y : double, in num : int)
+		this(w,h);
+		if(x < 0 || y < 0)
+			throw new Exception();
+		setPos_x(x);
+		setPos_y(y);
+		setSizeNumber(num);
+!!!139170.java!!!	Rectangle(inout other : Rectangle)
+		this(other.width,other.height,other.pos_x,other.pos_y,other.sizeNumber);
+!!!139298.java!!!	area() : double
+		return (width*height);
+!!!139426.java!!!	perimeter() : double
+		return (2*(width+height));
+!!!139554.java!!!	increment() : void
+		pos_x += 1;
+		pos_y += 1;
+!!!139682.java!!!	decrement() : void
+		if(getPos_x()-1 < 0 || getPos_y()-1 < 0)
+			throw new Exception();
+		
+		setPos_x(getPos_x() - 1);
+		setPos_y(getPos_y() - 1);
+!!!139810.java!!!	draw(inout g : Graphics) : void
+		paintComponent(g);
+!!!139938.java!!!	paintComponent(inout g : Graphics) : void
+		
+		super.paintComponent(g);
+
+		if(sizeNumber == 0)
+			g.setColor(Color.RED);  
+		else
+			g.setColor(Color.GREEN);  
+
+        g.drawRect((int)pos_x, (int)pos_y, (int)width,(int) height);
+!!!140066.java!!!	compareTo(inout other : Shape) : int
+		if(this.area() == other.area())
+			return 0;
+		else if(this.area() > other.area())
+			return 1;
+		else
+			return -1;
+!!!140194.java!!!	getPos_x() : double
+		return pos_x;
+!!!140322.java!!!	setPos_x(in x : double) : void
+		if(x < 0)
+			throw new Exception();
+		
+		this.pos_x = x;
+!!!140450.java!!!	getPos_y() : double
+		return pos_y;
+!!!140578.java!!!	setPos_y(in y : double) : void
+		if(y < 0)
+			throw new Exception();
+		
+		this.pos_y = y;
+!!!140706.java!!!	get_Width() : double
+		return width;
+!!!140834.java!!!	setWidth(in w : double) : void
+		width = w;
+!!!140962.java!!!	get_Height() : double
+		return height;
+!!!141090.java!!!	setHeight(in h : double) : void
+		if(h < 0)
+			throw new Exception();
+		
+		height = h;
+!!!141218.java!!!	toString() : String
+		return String.format("X : %.2f\tY: %.2f\n",this.getPos_x(),this.getPos_y());
+!!!141346.java!!!	getSizeNumber() : int
+		return sizeNumber;
+!!!141474.java!!!	setSizeNumber(in sizeNumber : int) : void
+		this.sizeNumber = sizeNumber;

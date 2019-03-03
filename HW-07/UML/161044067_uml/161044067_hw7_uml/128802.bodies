@@ -1,0 +1,98 @@
+class Triangle
+!!!141986.java!!!	Triangle()
+		edge = 0.0;
+		pos_x = 0;
+		pos_y = 0;
+!!!142114.java!!!	Triangle(in e : double)
+		edge = e;
+		pos_x = 0;
+		pos_y = 0;
+!!!142242.java!!!	Triangle(in e : double, in x : double, in y : double, in rc : int, in sizeNum : int)
+		this(e);
+		
+		if(x < 0 || y < 0)
+			throw new Exception();
+		
+		setPos_x(x);
+		setPos_y(y);
+		setRotateControl(rc);
+		setSizeNumber(sizeNum);
+!!!142370.java!!!	Triangle(inout other : Triangle)
+		this(other.edge,other.pos_x,other.pos_y,other.rotateControl,other.sizeNumber);
+!!!142498.java!!!	area() : double
+		return (Math.pow(edge,2) * Math.sqrt(3) / 4.0 );
+!!!142626.java!!!	perimeter() : double
+		return (3.0 * edge);
+!!!142754.java!!!	increment() : void
+		pos_x = pos_x +1;
+		pos_y = pos_y + 1;
+!!!142882.java!!!	decrement() : void
+		if(getPos_x()-1 < 0 || getPos_y()-1 < 0)
+			throw new Exception();
+		
+		setPos_x(getPos_x() - 1);
+		setPos_y(getPos_y() - 1);
+!!!143010.java!!!	draw(inout g : Graphics) : void
+		paintComponent(g);
+!!!143138.java!!!	paintComponent(inout g : Graphics) : void
+		
+		super.paintComponent(g);
+		
+		
+		int [] xPoints = new int[3];
+		int [] yPoints = new int[3];
+		if(sizeNumber == 0)
+			g.setColor(Color.RED); 
+		else
+			g.setColor(Color.GREEN);  
+		
+		if(this.getRotateControl() == 0) {
+			xPoints[0] = (int) this.pos_x;  yPoints[0] = (int)this.pos_y;
+			xPoints[1] = (int)(this.getPos_x() - this.getEdge()/2);  yPoints[1] = (int)(this.getPos_y() + this.getEdge()/2*Math.sqrt(3));  
+			xPoints[2] = (int)(this.getPos_x() + this.getEdge()/2);  yPoints[2] =(int)(this.getPos_y() + this.getEdge()/2*Math.sqrt(3));
+		}
+		else {
+			xPoints[0] = (int) this.pos_x;  yPoints[0] = (int)this.pos_y;
+			xPoints[1] = (int)(this.getPos_x() + this.getEdge());  yPoints[1] = (int)(this.getPos_y());  
+			xPoints[2] = (int)(this.getPos_x() + this.getEdge()/2);  yPoints[2] =(int)(this.getPos_y() + this.getEdge()/2*Math.sqrt(3));
+		}
+		
+		g.drawPolygon(xPoints, yPoints, 3);
+!!!143266.java!!!	compareTo(inout other : Shape) : int
+		if(this.area() == other.area())
+			return 0;
+		else if(this.area() > other.area())
+			return 1;
+		else
+			return -1;
+!!!143394.java!!!	getEdge() : double
+		return edge;
+!!!143522.java!!!	setEdge(in e : double) : void
+		if(e < 0)
+			throw new Exception();
+
+		this.edge = e;
+!!!143650.java!!!	getPos_x() : double
+		return pos_x;
+!!!143778.java!!!	setPos_x(in x : double) : void
+		if(x<0)
+			throw new Exception();
+	
+		this.pos_x = x;
+!!!143906.java!!!	getPos_y() : double
+		return pos_y;
+!!!144034.java!!!	setPos_y(in y : double) : void
+		if(y < 0)
+			throw new Exception();
+		
+		this.pos_y = y;
+!!!144162.java!!!	toString() : String
+		return String.format("X : %.2f\tY: %.2f\n",this.getPos_x(),this.getPos_y());
+!!!144290.java!!!	setRotateControl(in a : int) : void
+		rotateControl = a;
+!!!144418.java!!!	getRotateControl() : int
+		return rotateControl;
+!!!144546.java!!!	getSizeNumber() : int
+		return sizeNumber;
+!!!144674.java!!!	setSizeNumber(in sizeNumber : int) : void
+		this.sizeNumber = sizeNumber;

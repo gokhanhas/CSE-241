@@ -1,0 +1,12 @@
+window_sizes 1920 1017 450 1465 867 104
+
+diagrams
+  active  classdiagram_ref 128034 // 161044067_UML
+    1076 801 100 A4 0 0
+end
+show_stereotypes
+selected class_ref 128930 // Main_161044067
+open
+  classview_ref 128034 // hw07
+end
+end

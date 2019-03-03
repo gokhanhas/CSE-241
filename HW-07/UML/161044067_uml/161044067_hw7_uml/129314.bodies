@@ -1,0 +1,115 @@
+class PolygonDyn
+!!!135458.java!!!	PolygonDyn()
+		setArrayDyn(null);
+!!!135586.java!!!	PolygonDyn(inout rectangle : Rectangle)
+		
+		areaPolygon = rectangle.area();
+		perimeterPolygon = rectangle.perimeter();
+		
+		arrayDyn = new Point2D[4];
+		for(int i=0;i<4;i++){
+			arrayDyn[i] = new Point2D();
+		}
+		
+		arrayDyn[0].setPos_x(rectangle.getPos_x());
+		arrayDyn[0].setPos_y(rectangle.getPos_y());
+		
+		arrayDyn[1].setPos_x(rectangle.getPos_x() + rectangle.get_Width());    
+		arrayDyn[1].setPos_y(rectangle.getPos_y());
+		
+		arrayDyn[2].setPos_x(rectangle.getPos_x() + rectangle.get_Width());   
+		arrayDyn[2].setPos_y(rectangle.getPos_y() + rectangle.get_Height());
+		
+		arrayDyn[3].setPos_x(rectangle.getPos_x());    
+		arrayDyn[3].setPos_y(rectangle.getPos_y() + rectangle.get_Height());
+!!!135714.java!!!	PolygonDyn(inout circle : Circle)
+		
+		areaPolygon = circle.area();
+		perimeterPolygon = circle.perimeter();
+		
+		arrayDyn = new Point2D[100];
+		for(int i=0;i<100;i++){
+			arrayDyn[i] = new Point2D();
+		}
+		
+		double point_X = circle.getPos_x();
+		double point_Y = circle.getPos_y() - circle.getRadius();
+		
+		arrayDyn[0].setPos_x(point_X);
+		arrayDyn[0].setPos_y(point_Y);
+
+   		for(int i=1; i<100; ++i){
+
+	    	arrayDyn[i].setPos_x( circle.getPos_x() + (circle.getRadius()*Math.sin((i) * Math.PI/50.0)));
+	    	arrayDyn[i].setPos_y( circle.getPos_y() + ((-1)*circle.getRadius()*Math.cos((i) * Math.PI/50.0)));
+	    }
+!!!135842.java!!!	PolygonDyn(inout triangle : Triangle)
+		areaPolygon = triangle.area();
+		perimeterPolygon = triangle.perimeter();
+		
+		arrayDyn = new Point2D[3];
+		for(int i=0;i<3;i++){
+			arrayDyn[i] = new Point2D();
+		}
+		
+		if(triangle.getRotateControl() == 0){ // Normal triangle's coordinate 
+
+			arrayDyn[0].setPos_x(triangle.getPos_x());
+			arrayDyn[0].setPos_y(triangle.getPos_y());
+			
+			arrayDyn[1].setPos_x(triangle.getPos_x() - triangle.getEdge()/2);    
+			arrayDyn[1].setPos_y(triangle.getPos_y() + triangle.getEdge()/2*Math.sqrt(3));
+			
+			arrayDyn[2].setPos_x(triangle.getPos_x() + triangle.getEdge()/2);    
+			arrayDyn[2].setPos_y(triangle.getPos_y() + triangle.getEdge()/2*Math.sqrt(3));
+		}
+
+		else{ // Inverse triangle's coordinate
+
+			arrayDyn[0].setPos_x(triangle.getPos_x());
+			arrayDyn[0].setPos_y(triangle.getPos_y());
+			
+			arrayDyn[1].setPos_x(triangle.getPos_x() + triangle.getEdge());    
+			arrayDyn[1].setPos_y(triangle.getPos_y());
+			
+			arrayDyn[2].setPos_x(triangle.getPos_x() + triangle.getEdge()/2);    
+			arrayDyn[2].setPos_y(triangle.getPos_y() + triangle.getEdge()/2*Math.sqrt(3));
+		}
+!!!135970.java!!!	getArrayDyn() : Polygon::Point2D
+		return arrayDyn;
+!!!136098.java!!!	setArrayDyn(inout arrayDyn : Polygon::Point2D [[]]) : void
+		this.arrayDyn = arrayDyn;
+!!!136226.java!!!	area() : double
+		return areaPolygon;
+!!!136354.java!!!	perimeter() : double
+		return perimeterPolygon;
+!!!136482.java!!!	increment() : void
+		for(int i=0;i<arrayDyn.length;++i ) {
+			arrayDyn[i].setPos_x(arrayDyn[i].getPos_x()+1);
+			arrayDyn[i].setPos_y(arrayDyn[i].getPos_y()+1);
+		}
+!!!136610.java!!!	decrement() : void
+		for(int i=0;i<arrayDyn.length;++i ) {
+			arrayDyn[i].setPos_x(arrayDyn[i].getPos_x()-1);
+			arrayDyn[i].setPos_y(arrayDyn[i].getPos_y()-1);
+		}
+!!!136738.java!!!	draw(inout g : Graphics) : void
+		paintComponent(g);
+!!!136866.java!!!	paintComponent(inout g : Graphics) : void
+		super.paintComponent(g);
+		int [] xPoints = new int[arrayDyn.length];
+		int [] yPoints = new int[arrayDyn.length];
+		
+		for(int i=0;i<arrayDyn.length;++i) {
+			xPoints[i] = (int) arrayDyn[i].getPos_x();
+			yPoints[i] = (int) arrayDyn[i].getPos_y();
+		}
+		g.setColor(Color.magenta);
+		g.drawPolygon(xPoints, yPoints,arrayDyn.length);
+!!!136994.java!!!	compareTo(inout other : Shape) : int
+		if(this.area() == other.area())
+			return 0;
+		else if(this.area() > other.area())
+			return 1;
+		else
+			return -1;

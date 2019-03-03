@@ -1,0 +1,76 @@
+class Circle
+!!!128802.java!!!	Circle()
+		radius = 0.0;
+		pos_x = 0.0;
+		pos_y = 0.0;
+!!!128930.java!!!	Circle(in radius : double)
+		if(radius < 0)
+			throw new Exception();
+		
+		this.radius = radius;
+		pos_x = radius;
+		pos_y = radius;
+!!!129058.java!!!	Circle(in r : double, in x : double, in y : double, in sizeNum : int)
+		this(r);
+		setPos_x(x);
+		setPos_y(y);
+		setSizeNumber(sizeNum);
+!!!129186.java!!!	Circle(inout other : Circle)
+		this(other.radius,other.pos_x,other.pos_y,other.sizeNumber);
+!!!129314.java!!!	area() : double
+		return (Math.PI * Math.pow(radius, 2));
+!!!129442.java!!!	perimeter() : double
+		return (2.0 * Math.PI * radius);
+!!!129570.java!!!	increment() : void
+		pos_x += 1;
+		pos_y += 1;
+!!!129698.java!!!	decrement() : void
+		
+		if(getPos_x()-1 < 0 || getPos_y()-1 < 0)
+			throw new Exception();
+		
+		setPos_x(getPos_x() - 1);
+		setPos_y(getPos_y() - 1);
+!!!129826.java!!!	draw(inout g : Graphics) : void
+		paintComponent(g);
+!!!129954.java!!!	paintComponent(inout g : Graphics) : void
+		
+		super.paintComponent(g);
+       
+		if(sizeNumber == 0)
+        	g.setColor(Color.RED); 
+        else
+        	g.setColor(Color.GREEN); 
+        
+        g.drawOval((int)this.getPos_x()-(int)this.getRadius(), (int)this.getPos_y()-(int)this.getRadius(), (int)this.getRadius()*2,(int)this.getRadius()*2);
+!!!130082.java!!!	compareTo(inout other : Shape) : int
+		if(this.area() == other.area())
+			return 0;
+		else if(this.area() > other.area())
+			return 1;
+		else
+			return -1;
+!!!130210.java!!!	getRadius() : double
+		return radius;
+!!!130338.java!!!	setRadius(in radius : double) : void
+		this.radius = radius;
+!!!130466.java!!!	getPos_x() : double
+		return pos_x;
+!!!130594.java!!!	setPos_x(in x : double) : void
+		if(x < 0)
+			throw new Exception();
+		
+		this.pos_x = x;
+!!!130722.java!!!	getPos_y() : double
+		return pos_y;
+!!!130850.java!!!	setPos_y(in y : double) : void
+		if(y < 0)
+			throw new Exception();
+		
+		this.pos_y =y;
+!!!130978.java!!!	toString() : String
+		return String.format("X : %.2f\tY: %.2f\n",this.getPos_x(),this.getPos_y());
+!!!131106.java!!!	getSizeNumber() : int
+		return sizeNumber;
+!!!131234.java!!!	setSizeNumber(in sizeNumber : int) : void
+		this.sizeNumber = sizeNumber;

@@ -1,0 +1,129 @@
+class PolygonVect
+!!!137122.java!!!	PolygonVect()
+		arrayList = null;
+!!!137250.java!!!	PolygonVect(inout rectangle : Rectangle)
+		
+		areaPolygon = rectangle.area();
+		perimeterPolygon = rectangle.perimeter();
+		
+		Point2D temp = new Point2D();
+		
+		temp.setPos_x(rectangle.getPos_x());
+		temp.setPos_y(rectangle.getPos_y());
+		arrayList.add(temp);
+		
+		temp = new Point2D();
+		temp.setPos_x(rectangle.getPos_x() + rectangle.get_Width());
+		temp.setPos_y(rectangle.getPos_y());
+		arrayList.add(temp);
+	
+		temp = new Point2D();
+		temp.setPos_x(rectangle.getPos_x() + rectangle.get_Width());
+		temp.setPos_y(rectangle.getPos_x() + rectangle.get_Height());
+		arrayList.add(temp);
+
+		temp = new Point2D();
+		temp.setPos_x(rectangle.getPos_x());
+		temp.setPos_y(rectangle.getPos_y() + rectangle.get_Height());
+		arrayList.add(temp);
+		
+!!!137378.java!!!	PolygonVect(inout circle : Circle)
+		
+		areaPolygon = circle.area();
+		perimeterPolygon = circle.perimeter();
+		
+		int size = 100;
+		
+		double point_X = circle.getPos_x();
+		double point_Y = circle.getPos_y() - circle.getRadius();
+		
+		Point2D temp = new Point2D();
+		temp.setPos_x(point_X);
+		temp.setPos_y(point_Y);
+		arrayList.add(temp);
+
+   		for(int i=1; i<size; ++i){
+   			
+   			temp = new Point2D();
+	    	temp.setPos_x( circle.getPos_x() + (circle.getRadius()*Math.sin((i) * Math.PI/50.0)));
+	    	temp.setPos_y( circle.getPos_y() + ((-1)*circle.getRadius()*Math.cos((i) * Math.PI/50.0)));
+	    	arrayList.add(temp);
+	    }
+!!!137506.java!!!	PolygonVect(inout triangle : Triangle)
+		
+		areaPolygon = triangle.area();
+		perimeterPolygon = triangle.perimeter();
+		
+		Point2D temp = new Point2D();
+		
+		if(triangle.getRotateControl() == 0){ // Normal triangle's coordinate 
+			
+			temp.setPos_x(triangle.getPos_x());
+			temp.setPos_y(triangle.getPos_y());
+			arrayList.add(temp);
+
+			temp = new Point2D();
+			temp.setPos_x(triangle.getPos_x() - triangle.getEdge()/2);
+			temp.setPos_y(triangle.getPos_y() + triangle.getEdge()/2*Math.sqrt(3));
+			arrayList.add(temp);
+			
+			temp = new Point2D();
+			temp.setPos_x(triangle.getPos_x() + triangle.getEdge()/2);
+			temp.setPos_y(triangle.getPos_y() + triangle.getEdge()/2*Math.sqrt(3));
+			arrayList.add(temp);
+		}
+
+		else{ // Inverse triangle's coordinate
+
+			temp.setPos_x(triangle.getPos_x());
+			temp.setPos_y(triangle.getPos_y());
+			arrayList.add(temp);
+
+			temp = new Point2D();
+			temp.setPos_x(triangle.getPos_x() + triangle.getEdge());
+			temp.setPos_y(triangle.getPos_y());
+			arrayList.add(temp);
+
+			temp = new Point2D();
+			temp.setPos_x(triangle.getPos_x() + triangle.getEdge()/2);
+			temp.setPos_y(triangle.getPos_y() + triangle.getEdge()/2*Math.sqrt(3));
+			arrayList.add(temp);			
+		}	
+!!!137634.java!!!	getArrayList() : Polygon::Point2D
+		return arrayList;
+!!!137762.java!!!	setArrayList(inout arrayList : ArrayList<Point2D>) : void
+		this.arrayList = arrayList;
+!!!137890.java!!!	area() : double
+		return areaPolygon;
+!!!138018.java!!!	perimeter() : double
+		return perimeterPolygon;
+!!!138146.java!!!	increment() : void
+		for(int i=0;i<arrayList.size();++i) {
+			arrayList.get(i).setPos_x(arrayList.get(i).getPos_x()+1);
+			arrayList.get(i).setPos_y(arrayList.get(i).getPos_y()+1);
+		}
+!!!138274.java!!!	decrement() : void
+		for(int i=0;i<arrayList.size();++i) {
+			arrayList.get(i).setPos_x(arrayList.get(i).getPos_x()-1);
+			arrayList.get(i).setPos_y(arrayList.get(i).getPos_y()-1);
+		}
+!!!138402.java!!!	draw(inout g : Graphics) : void
+		paintComponent(g);
+!!!138530.java!!!	paintComponent(inout g : Graphics) : void
+		super.paintComponent(g);
+		int [] xPoints = new int[arrayList.size()];
+		int [] yPoints = new int[arrayList.size()];
+		
+		for(int i=0;i<arrayList.size();++i) {
+			xPoints[i] = (int) arrayList.get(i).getPos_x();
+			yPoints[i] = (int) arrayList.get(i).getPos_y();
+		}
+		g.setColor(Color.BLUE);
+		g.drawPolygon(xPoints, yPoints,arrayList.size());
+!!!138658.java!!!	compareTo(inout other : Shape) : int
+		if(this.area() == other.area())
+			return 0;
+		else if(this.area() > other.area())
+			return 1;
+		else
+			return -1;

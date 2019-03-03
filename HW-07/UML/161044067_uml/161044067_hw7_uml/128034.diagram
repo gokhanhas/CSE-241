@@ -1,0 +1,113 @@
+format 221
+
+classcanvas 131234 class_ref 128290 // Shape
+  classdiagramsettings member_max_width 0 end
+  xyz 364 325 2000
+end
+classcanvas 131362 class_ref 128674 // Rectangle
+  classdiagramsettings member_max_width 0 end
+  xyz 70 99 2006
+end
+classcanvas 131618 class_ref 128802 // Triangle
+  classdiagramsettings member_max_width 0 end
+  xyz 649 107 2006
+end
+classcanvas 131874 class_ref 128034 // Circle
+  classdiagramsettings member_max_width 0 end
+  xyz 217 543 2012
+end
+classcanvas 132130 class_ref 128546 // ComposedShape
+  classdiagramsettings member_max_width 0 end
+  xyz 441 554 2018
+end
+classcanvas 133282 class_ref 129058 // Polygon
+  classdiagramsettings member_max_width 0 end
+  xyz 358 129 2006
+end
+classcanvas 133538 class_ref 129314 // PolygonDyn
+  classdiagramsettings member_max_width 0 end
+  xyz 503 57 2012
+end
+classcanvas 133794 class_ref 129442 // PolygonVect
+  classdiagramsettings member_max_width 0 end
+  xyz 208 58 2012
+end
+classcanvas 134050 class_ref 129570 // StaticMethods
+  classdiagramsettings member_max_width 0 end
+  xyz 71 596 2000
+end
+classcanvas 134178 class_ref 128930 // Main_161044067
+  classdiagramsettings member_max_width 0 end
+  xyz 646 607 2000
+end
+relationcanvas 131490 relation_ref 130466 // <realization>
+  from ref 131362 z 2007 to ref 131234
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131746 relation_ref 130722 // <realization>
+  from ref 131618 z 2007 to ref 131234
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132002 relation_ref 128290 // <realization>
+  from ref 131874 z 2013 to ref 131234
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132258 relation_ref 128546 // <realization>
+  from ref 132130 z 2019 to ref 131234
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132386 relation_ref 128674 // <unidirectional association>
+  from ref 132130 z 2019 to ref 131234
+  role_a_pos 430 476 3000 no_role_b
+  multiplicity_a_pos 404 476 3000 no_multiplicity_b
+end
+relationcanvas 132514 relation_ref 128802 // <unidirectional association>
+  from ref 132130 z 2019 to ref 131362
+  role_a_pos 182 385 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132642 relation_ref 128930 // <unidirectional association>
+  from ref 132130 z 2019 to ref 131362
+  role_a_pos 183 395 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132770 relation_ref 129058 // <unidirectional association>
+  from ref 132130 z 2019 to ref 131874
+  role_a_pos 320 705 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132898 relation_ref 129186 // <unidirectional association>
+  from ref 132130 z 2019 to ref 131874
+  role_a_pos 323 726 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133026 relation_ref 129314 // <unidirectional association>
+  from ref 132130 z 2019 to ref 131618
+  role_a_pos 581 425 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133154 relation_ref 129442 // <unidirectional association>
+  from ref 132130 z 2019 to ref 131618
+  role_a_pos 579 413 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133410 relation_ref 129698 // <realization>
+  from ref 133282 z 2007 to ref 131234
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133666 relation_ref 129826 // <generalisation>
+  from ref 133538 z 2013 to ref 133282
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133922 relation_ref 130082 // <generalisation>
+  from ref 133794 z 2013 to ref 133282
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end
